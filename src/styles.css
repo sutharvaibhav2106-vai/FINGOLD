@@ -193,3 +193,35 @@
     radial-gradient(circle at 20% 10%, rgba(244,208,63,0.18), transparent 40%),
     radial-gradient(circle at 80% 80%, rgba(138,106,47,0.18), transparent 45%);
 }
+
+@utility text-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.045em;
+  line-height: 0.94;
+  font-weight: 700;
+}
+
+@utility eyebrow-tag {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+@utility hairline-t {
+  border-top: 1px solid color-mix(in oklab, var(--bronze) 28%, transparent);
+}
+@utility hairline-b {
+  border-bottom: 1px solid color-mix(in oklab, var(--bronze) 28%, transparent);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@utility marquee {
+  animation: marquee 45s linear infinite;
+}
+
