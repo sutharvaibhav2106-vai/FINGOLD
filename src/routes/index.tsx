@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Accordion,
   AccordionContent,
@@ -94,7 +94,7 @@ const whyChoose = [
 ];
 
 const tools = [
-  { icon: Calculator, title: "Gold SIP Calculator", desc: "Project monthly investment value." },
+  { icon: Calculator, title: "Gold SIP Calculator", desc: "Project monthly investment value.", href: "/sip-calculator" },
   { icon: Coins, title: "Lump Sum Calculator", desc: "See one-time growth over time." },
   { icon: Target, title: "Goal Planner", desc: "Map life goals to gold." },
   { icon: TrendingUp, title: "Future Value", desc: "Forecast portfolio worth." },
@@ -390,9 +390,9 @@ function Home() {
             <SectionHeader eyebrow="Plan" title="Tools & Calculators" sub="Model every gold scenario in seconds." />
           </Reveal>
           <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {tools.map((t, i) => (
-              <Reveal key={t.title} delay={i * 70}>
-                <article className="group h-full rounded-3xl border border-border/40 bg-background/40 p-7 transition-all hover:-translate-y-1 hover:border-foreground/40">
+            {tools.map((t, i) => {
+              const CardContent = (
+                <article className="group h-full rounded-3xl border border-border/40 bg-background/40 p-7 transition-all hover:-translate-y-1 hover:border-foreground/40 cursor-pointer">
                   <div className="flex items-center justify-between">
                     <t.icon className="h-7 w-7" style={{ color: "var(--bronze)" }} />
                     <ArrowUpRight className="h-5 w-5 text-foreground/30 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-foreground" />
@@ -400,8 +400,19 @@ function Home() {
                   <h3 className="mt-10 text-display text-xl">{t.title}</h3>
                   <p className="mt-2 text-sm text-foreground/65">{t.desc}</p>
                 </article>
-              </Reveal>
-            ))}
+              );
+              return (
+                <Reveal key={t.title} delay={i * 70}>
+                  {t.href ? (
+                    <Link to={t.href} className="block h-full">
+                      {CardContent}
+                    </Link>
+                  ) : (
+                    CardContent
+                  )}
+                </Reveal>
+              );
+            })}
           </div>
         </section>
 
@@ -544,8 +555,19 @@ function Home() {
               <div>
                 <h4 className="eyebrow-tag">Navigate</h4>
                 <ul className="mt-5 space-y-2.5 text-sm text-foreground/70">
-                  {["Home", "Investment Options", "Calculators", "Learning Center", "FAQ", "Contact"].map((l) => (
-                    <li key={l}><a href="#" className="hover:text-foreground">{l}</a></li>
+                  {[
+                    { label: "Home", href: "/" },
+                    { label: "Investment Options", href: "/#options" },
+                    { label: "Calculators", href: "/#tools" },
+                    { label: "Learning Center", href: "/#learn" },
+                    { label: "FAQ", href: "/#faq" },
+                    { label: "Contact", href: "/#cta" },
+                  ].map((item) => (
+                    <li key={item.label}>
+                      <a href={item.href} className="hover:text-foreground">
+                        {item.label}
+                      </a>
+                    </li>
                   ))}
                 </ul>
               </div>

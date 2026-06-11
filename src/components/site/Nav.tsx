@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 
 const links = [
-  { href: "#why", label: "Why Gold" },
-  { href: "#options", label: "Investments" },
-  { href: "#tools", label: "Calculators" },
-  { href: "#learn", label: "Learn" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#why", label: "Why Gold" },
+  { href: "/#options", label: "Investments" },
+  { href: "/#tools", label: "Calculators" },
+  { href: "/#learn", label: "Learn" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function Nav() {
