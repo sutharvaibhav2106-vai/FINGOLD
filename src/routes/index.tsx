@@ -95,7 +95,7 @@ const whyChoose = [
 
 const tools = [
   { icon: Calculator, title: "Gold SIP Calculator", desc: "Project monthly investment value.", href: "/sip-calculator" },
-  { icon: Coins, title: "Lump Sum Calculator", desc: "See one-time growth over time." },
+  { icon: Coins, title: "Lump Sum Calculator", desc: "See one-time growth over time.", href: "/lumpsum-calculator" },
   { icon: Target, title: "Goal Planner", desc: "Map life goals to gold." },
   { icon: TrendingUp, title: "Future Value", desc: "Forecast portfolio worth." },
 ];

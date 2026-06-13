@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SipCalculatorRouteImport } from './routes/sip-calculator'
+import { Route as LumpsumCalculatorRouteImport } from './routes/lumpsum-calculator'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SipCalculatorRoute = SipCalculatorRouteImport.update({
   id: '/sip-calculator',
   path: '/sip-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LumpsumCalculatorRoute = LumpsumCalculatorRouteImport.update({
+  id: '/lumpsum-calculator',
+  path: '/lumpsum-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/lumpsum-calculator': typeof LumpsumCalculatorRoute
   '/sip-calculator': typeof SipCalculatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/lumpsum-calculator': typeof LumpsumCalculatorRoute
   '/sip-calculator': typeof SipCalculatorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/lumpsum-calculator': typeof LumpsumCalculatorRoute
   '/sip-calculator': typeof SipCalculatorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sip-calculator'
+  fullPaths: '/' | '/lumpsum-calculator' | '/sip-calculator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sip-calculator'
-  id: '__root__' | '/' | '/sip-calculator'
+  to: '/' | '/lumpsum-calculator' | '/sip-calculator'
+  id: '__root__' | '/' | '/lumpsum-calculator' | '/sip-calculator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LumpsumCalculatorRoute: typeof LumpsumCalculatorRoute
   SipCalculatorRoute: typeof SipCalculatorRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/sip-calculator'
       fullPath: '/sip-calculator'
       preLoaderRoute: typeof SipCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lumpsum-calculator': {
+      id: '/lumpsum-calculator'
+      path: '/lumpsum-calculator'
+      fullPath: '/lumpsum-calculator'
+      preLoaderRoute: typeof LumpsumCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LumpsumCalculatorRoute: LumpsumCalculatorRoute,
   SipCalculatorRoute: SipCalculatorRoute,
 }
 export const routeTree = rootRouteImport
